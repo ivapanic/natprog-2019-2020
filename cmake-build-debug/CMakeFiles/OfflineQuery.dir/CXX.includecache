@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/iva/Desktop/FER/5.semestar/NATPROG/prva_zadaca/OfflineQuery.cpp
+iostream
+-
+algorithm
+-
+string
+-
+vector
+-
+iterator
+-
+

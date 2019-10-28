@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/prva_zadaca.dir/LjuteKrave.cpp.o CMakeFiles/prva_zadaca.dir/Pucanje.c.o  -o prva_zadaca 
