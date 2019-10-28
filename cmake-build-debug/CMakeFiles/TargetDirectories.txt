@@ -1,5 +1,0 @@
-/home/iva/Desktop/FER/5.semestar/NATPROG/prva_zadaca/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/iva/Desktop/FER/5.semestar/NATPROG/prva_zadaca/cmake-build-debug/CMakeFiles/OfflineQuery_2.dir
-/home/iva/Desktop/FER/5.semestar/NATPROG/prva_zadaca/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/iva/Desktop/FER/5.semestar/NATPROG/prva_zadaca/cmake-build-debug/CMakeFiles/LjuteKrave.dir
-/home/iva/Desktop/FER/5.semestar/NATPROG/prva_zadaca/cmake-build-debug/CMakeFiles/Pucanje.dir

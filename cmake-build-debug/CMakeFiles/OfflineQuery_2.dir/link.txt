@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/OfflineQuery_2.dir/OfflineQuery_2.cpp.o  -o OfflineQuery_2 
