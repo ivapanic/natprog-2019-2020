@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/treca_zadaca.dir/andrijin_automat.cpp.o CMakeFiles/treca_zadaca.dir/ciprijanovo_cvijece.cpp.o  -o treca_zadaca 

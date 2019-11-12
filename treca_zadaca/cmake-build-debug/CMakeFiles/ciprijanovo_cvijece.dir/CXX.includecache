@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/iva/Desktop/FER/5.semestar/NATPROG/treca_zadaca/ciprijanovo_cvijece.cpp
+iostream
+-
+algorithm
+-
+vector
+-
+tuple
+-
+

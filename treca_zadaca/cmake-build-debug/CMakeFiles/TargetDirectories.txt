@@ -1,0 +1,3 @@
+/home/iva/Desktop/FER/5.semestar/NATPROG/treca_zadaca/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/iva/Desktop/FER/5.semestar/NATPROG/treca_zadaca/cmake-build-debug/CMakeFiles/ciprijan.dir
+/home/iva/Desktop/FER/5.semestar/NATPROG/treca_zadaca/cmake-build-debug/CMakeFiles/edit_cache.dir
