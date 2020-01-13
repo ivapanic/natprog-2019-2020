@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/ciprijanovo_cvijece.dir/ciprijanovo_cvijece.cpp.o  -o ciprijanovo_cvijece 

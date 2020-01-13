@@ -1,92 +1,54 @@
 #include <iostream>
-#include <algorithm>
 #include <vector>
-#include <tuple>
+#include <algorithm>
 
-std::vector<std::tuple<int, std::vector<int>>> neighbour_positions(int x, int y) {
-    //0 - new direction: right
-    //1 - new direction: down
-    //2 - new direction: down-right
-    std::vector<std::tuple<int, std::vector<int>>> neighbourhood;
-    std::vector<int> new_position(2);
-
-    if(x - 1 >= 0 && y - 1 >= 0) {
-        new_position[0] = x - 1; new_position[1] = y - 1;
-        neighbourhood.push_back(std::make_tuple(2, new_position));
-        new_position[0] = x - 1; new_position[1] = y;
-        neighbourhood.push_back(std::make_tuple(0, new_position));
-        new_position[0] = x; new_position[1] = y - 1;
-        neighbourhood.push_back(std::make_tuple(1, new_position));
-    }
-    else if (x - 1 < 0) {
-        new_position[0] = x; new_position[1] = y - 1;
-        neighbourhood.push_back(std::make_tuple(1, new_position));
-    }
-    else if (y - 1 < 0) {
-        new_position[0] = x - 1; new_position[1] = y;
-        neighbourhood.push_back(std::make_tuple(0, new_position));
-    }
-
-    return neighbourhood;
+int max(int a, int b, int c, int d)
+{
+  return std::max(a, std::max(b, std::max(c, d)));
 }
 
-int find_best_path(int n, int m, std::vector<std::vector<std::vector<int>>> &sum, std::vector<std::vector<int>> &garden) {
-    sum[0][0][0] = garden[0][0];
-    sum[1][0][0] = garden[0][0];
-    sum[2][0][0] = garden[0][0];
+using std::max;
 
-    for(int x = 0; x < n; ++x) {
-        for(int y = 0; y < m; ++y) {
-            if(x == 0 && y == 0) continue;
-
-            for(auto [move, position] : neighbour_positions(x, y)) {
-                int result = -50;
-                for(int i = 0; i < 2; ++i) {
-                    if (i == move) continue;
-                    result = std::max(sum[i][position[0]][position[1]], result);
-                }
-                if(result >= 0) sum[move][x][y] = garden[x][y] + result;
-            }
-        }
+int main()
+{
+  int n, m;
+  std::cin >> n >> m;
+  // alociranje 1 reda i 1 stupca vise da se izbjegne range check
+  std::vector<int> garden((n+1) * (m+1), 0);
+  for (int i = 1; i <= n; ++i)
+  {
+    for (int j = 1; j <= m; ++j)
+    {
+      char input;
+      std::cin >> input;
+      if ('X' == input)
+      {
+        garden[i * m + j] = 1;
+      }
     }
+  }
 
-    int final_result = 0;
-
-    for(int x = 0; x <= 2; ++x) {
-        for(int y = 0; y < n; ++y) {
-            for(int z = 0; z < m; ++z) {
-                final_result = std::max(final_result, sum[x][y][z]);
-            }
-        }
+  std::vector<int> max_down(garden.size(), 0);
+  std::vector<int> max_right(garden.size(), 0);
+  std::vector<int> max_down_right(garden.size(), 0);
+  int maximum = 0;
+  for (int i = 1; i <= n ; ++i)
+  {
+    for (int j = 1; j <= m ; ++j)
+    {
+      // uzastopni pokreti nisu moguci; krajnji slucaj je naizmjenicno dolje, dijagonalno (ili desno pa dijagonalno)
+      // sto znaci da se nikada ne moze pomaknuti vise od 2 puta vise po jednoj osi nego po drugoj
+      if (j > i + i  || i > j + j)
+      {
+        continue;
+      }
+      const int curr_idx = i * m + j;
+      max_down[curr_idx] = max(max_right[(i - 1) * m + j], max_down_right[(i - 1) * m + j]) + garden[i * m + j];
+      max_right[curr_idx] = max(max_down[i * m + j - 1], max_down_right[i * m + j - 1]) + garden[i * m + j];
+      max_down_right[curr_idx] = max(max_down[(i - 1) * m + j - 1], max_right[(i - 1) * m + j - 1]) + garden[i * m + j];
+      maximum = max(maximum, max_down[curr_idx], max_right[curr_idx], max_down_right[curr_idx]);
     }
+  }
 
-    return final_result;
-}
-
-
-int main() {
-
-   //dvodimenzionalna matrica s n redaka i m stupaca
-   //prazna polja: '.', cvijece 'X'
-   //ciprijan mora skupiti max cvijeca tako da se krece samo desno, dolje, dolje-desno bez ponavljanja pokreta
-
-    int n, m;
-    std::cin >> n >> m;
-    std::vector<std::vector<int>> garden(n, std::vector<int>(m, 0));
-    std::vector<std::vector<std::vector<int>>> sum(3, std::vector<std::vector<int>>(n, std::vector<int>(m, -50)));
-
-    for(int x = 0; x < n; ++x) {
-        for(int y = 0; y < m; ++y) {
-            char input;
-            std::cin >> input;
-            if(input == 'X')
-                garden[x][y] = 1;
-
-            std::vector<int> element(2);
-            element.push_back(-1);
-            element.push_back(garden[x][y]);
-        }
-    }
-    int result = find_best_path(n, m, sum, garden);
-    std::cout << result;
+  std::cout << maximum << std::endl;
 }
